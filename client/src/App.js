@@ -28,7 +28,6 @@ const App = () => {
         </Routes>
         {<Navbar></Navbar>}
       </Router>
-    <h1>Hey</h1>
     </>
   );
 

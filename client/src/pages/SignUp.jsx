@@ -13,16 +13,25 @@ const SignUp = () => {
     email: '',
     password: '',
   })
-  const { name, email, password } = formData
+  const { name, email, password } = formData;
 
 
-  const onSubmit = async (values, actions) => {
-    // e.preventDefault()
+  const onSubmit = (values, actions) => {
 
-    // try {
+    if(values){
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        };
+          fetch('http://127.0.0.1:3001/api/signup/', requestOptions).then((res)=>{
+            return res.json();
+          });
+    }else{
+       console.log('Error');
+    }
 
-    // } catch (error) {
-    // }
+
 
     console.log('submitted');
     console.log(values);
