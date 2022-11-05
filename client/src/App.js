@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Explore from './pages/Explore';
 import ForgetPassword from './pages/ForgetPassword';
 import Offers from './pages/Offers';
+import Category from './pages/Category';
 import ProductDetails from './pages/ProductDetails';
 import ProductListing from './pages/ProductListing';
 import Profile from './pages/Profile';
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/' element={<Explore />}></Route>
           <Route path='/forget-password' element={<ForgetPassword />}></Route>
           <Route path='/offers' element={<Offers />}></Route>
+          <Route path='/category/:categoryName' element={<Category />}></Route>
           <Route path='/product-details' element={<ProductDetails />}></Route>
           <Route path='/product-listing' element={<ProductListing />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
