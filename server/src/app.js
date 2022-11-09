@@ -10,7 +10,6 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-// const Users = require("./Model/userSchema");
 const connect = require("./db/mongoose");
 connect();
 

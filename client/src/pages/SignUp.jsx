@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik} from 'formik'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import BasicSchema from '../schema/schema'
@@ -15,27 +17,38 @@ const SignUp = () => {
   })
   const { name, email, password } = formData;
 
+  const navigate = useNavigate();
 
-  const onSubmit = (values, actions) => {
+
+  const onSubmit = async(values, actions) => {
 
     if(values){
+      try{
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(values),
         };
-          fetch('http://127.0.0.1:3001/api/signup/', requestOptions).then((res)=>{
-            return res.json();
-          });
+
+        await fetch('http://127.0.0.1:3003/api/users/signup', requestOptions).then((res)=>{
+          // return res.json();
+          // console.log(res.json());
+          if(res){
+            // navigate('/signin');
+            toast.success('User created successfully. Please signin to continue.');
+            navigate('/signin');
+          }
+        });
+
+      }catch(error){
+        toast.error('Something went wrong with registration. Please try again.')
+      }
     }else{
        console.log('Error');
     }
 
-
-
     console.log('submitted');
-    console.log(values);
-    console.log(actions);
+  
   }
 
 
@@ -132,8 +145,8 @@ console.log(errors);
             <Link to='/signin' className='registerLink'>
               Sign In Instead
             </Link> 
-
         </div>
+        <ToastContainer />
       </>
     ); 
 

@@ -1,10 +1,11 @@
-
+import CreateListing from "./CreateListing"
 
 
 const Profile =()=>{
     return (
         <>
         Profile
+        <CreateListing></CreateListing>
         </>
     )
 }
